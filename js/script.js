@@ -11,8 +11,16 @@ const perPage = 10;
 
 
 /*** 
-   Create the `showPage` function 
+FUNCTION showPage 
+Create the "showPage" function with the arguments of "list" and "page"
+   multiply page by perPage and subtract perPage -> store in var startIndex
+   multiply page by perPage -> Store in var endIndex
+   loop over list length
+      if statement: i is greater than or equal to startIndex and less than endIndex
+         change studentLI display property to ""
+         else: change studentLI display property to "none"
 ***/
+
 const showPage = (list, page) => {
    const startIndex = (page * perPage) - perPage;
    const endIndex = page * perPage;
@@ -27,19 +35,45 @@ const showPage = (list, page) => {
 }
 
 /*** 
-   Create the `appendPageLinks function` to generate, append, and add 
-   functionality to the pagination buttons.
+FUNCTION appendPageLinks
+Create the "appendPageLinks" function with the argument of "list"
+   divide list.length by perPage -> store in var "pageNum"
+   create div element -> store in "div" var
+   select the div with the ".page" class -> store in "pageDiv" var
+   create ul element -> store in the "ul" var
+
+   change div class name to "pagination"
+   append ul to div
+   append div to pageDiv
+
+   loop for value of pageNumber
+      create li element -> store in "li" var
+      create a element -> store in "a" var
+      change a element href value to "#"
+      change a element text content to loop integer variable value + 1
+      append a to li
+      append li to ul
+
+   select the first a element and store in "a" var
+   select all a elements and store in "allATags" var
+   change a class name to "active";
+   call the showPage function and pass preliminary values
+
+   add an click event handler to ul
+      loop for the length of allATags
+         change allTags class Name to "";
+      End loop
+      change event target class name to "active";
+      call showPage function -> passing StudentLI and the event target textContent value
+
 ***/
-
 const appendPageLinks = (list) => {
-
    const pageNum = list.length / perPage;
-
    let div = document.createElement("div");
-   div.className = "pagination";
-   
    let pageDiv = document.querySelector(".page");
    let ul = document.createElement("ul");
+   
+   div.className = "pagination";
    div.appendChild(ul);
    pageDiv.appendChild(div);
 
@@ -58,7 +92,6 @@ const appendPageLinks = (list) => {
     showPage(studentLI, 1);
 
       ul.addEventListener("click", () => {
-         
          for (i = 0; i < allATags.length; i += 1) {
             allATags[i].className = "";
          }
@@ -68,6 +101,7 @@ const appendPageLinks = (list) => {
 
 };
 
-
-
+/*** 
+CALL appendPageLinks passing in studentLI
+***/
 appendPageLinks(studentLI);
