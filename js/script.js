@@ -16,8 +16,9 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally 
    scoped to that function.
 ***/
-
-
+//const studentLI = document.getElementsByClassName ("student-item");
+const studentLI = document.querySelectorAll('.student-item');
+const perPage = 10;
 
 
 /*** 
@@ -34,7 +35,18 @@ FSJS project 2 - List Filter and Pagination
        that will be passed into the parens later when you call or 
        "invoke" the function 
 ***/
+const showPage = (list, page) => {
+   const startIndex = (page * perPage) - perPage;
+   const endIndex = page * perPage;
+   for (i = 0; i < list.length; i += 1) {
+      if (i >= startIndex && i < endIndex) {
+         studentLI[i].style.display = "";
+      } else {
+         studentLI[i].style.display = "none";
+      }
+   };
 
+}
 
 
 
@@ -43,8 +55,48 @@ FSJS project 2 - List Filter and Pagination
    functionality to the pagination buttons.
 ***/
 
+const appendPageLinks = (list) => {
+   //creates pageNum var and stores list length divided by the perPage var
+   const pageNum = list.length / perPage;
+   //gets the div .page by className and stores it in pageDiv var
+   const pageDiv = document.getElementsByClassName("page");
+
+   //creates a div element and stores in var pageDiv
+   //changes the div var className to pagination
+   const div = document.createElement("div");
+   div.className = ("pagination");
 
 
+
+   //creates a ul element and stores it in var UL
+   const UL = document.createElement("ul");
+
+ 
+   
+   for (i = 0; i < pageNum; i += 1) {
+      let li = document.createElement("li");
+      let a = document.createElement("a");
+      a.href = "#";
+      a.textContent = i;
+      li.appendChild(a);
+      UL.appendChild(li);
+      div.appendChild(UL);
+      pageDiv.appendChild = div;
+   }
+
+   li[0].className = "active";
+   
+
+   for (i = 0; i < ; i += 1) {
+
+   }
+};
+
+
+
+
+console.log(appendPageLinks(studentLI));
+showPage(studentLI, 1);
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
