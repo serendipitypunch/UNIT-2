@@ -32,7 +32,6 @@ const showPage = (list, page) => {
          studentLI[i].style.display = "none";
       }
    };
-
 }
 
 /*** 
@@ -66,7 +65,6 @@ Create the "appendPageLinks" function with the argument of "list"
       End loop
       change event target class name to "active";
       call showPage function -> passing StudentLI and the event target textContent value
-
 ***/
 const appendPageLinks = (list) => {
    const pageNum = list.length / perPage;
@@ -85,7 +83,6 @@ const appendPageLinks = (list) => {
       li.appendChild(a);
       ul.appendChild(li);
    }
-
     let a = ul.firstElementChild.firstElementChild;
     let allATags = div.querySelectorAll("a");
     a.className = "active";
@@ -98,7 +95,6 @@ const appendPageLinks = (list) => {
          event.target.className = "active";
          showPage(studentLI, event.target.textContent);
       });
-
 };
 
 /*** 
