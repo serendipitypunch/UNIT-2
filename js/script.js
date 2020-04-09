@@ -8,6 +8,7 @@ FSJS project 2 - List Filter and Pagination
 ***/
 const studentLI = document.querySelectorAll('.student-item');
 const perPage = 10;
+let pageDiv = document.querySelector(".page");
 
 
 /*** 
@@ -70,7 +71,6 @@ Create the "appendPageLinks" function with the argument of "list"
 const appendPageLinks = (list) => {
    const pageNum = list.length / perPage;
    let div = document.createElement("div");
-   let pageDiv = document.querySelector(".page");
    let ul = document.createElement("ul");
    
    div.className = "pagination";
@@ -105,3 +105,49 @@ const appendPageLinks = (list) => {
 CALL appendPageLinks passing in studentLI
 ***/
 appendPageLinks(studentLI);
+
+/*** 
+FUNCTION searchBar
+***/
+let pageHeader = document.querySelector(".page-header");
+let form = document.createElement("form");
+form.style.float = "right";
+let textBox = document.createElement("input");
+textBox.type = "text";
+textBox.placeholder = "Search!";
+textBox.autocomplete = "off";
+textBox.className = "search-input";
+let submitButton = document.createElement("input");
+submitButton.type = "submit";
+
+
+
+form.appendChild(submitButton);
+form.insertBefore(textBox, submitButton);
+
+pageHeader.appendChild(form);
+
+const searchStudents = (searchInput, name) => {
+   let newStudentsList;
+   for (let i = 0; i < name.length; i += 1) {
+      // names[i].className = "";
+      if (searchInput.value.length !== 0 && names[i].textContent.toLowerCase() === searchInput.value.toLowerCase()) {
+        newStudentsList.appendChild(names[i]);
+      }
+    }
+   appendPageLinks(newStudentList);
+};
+
+submitButton.addEventListener("click", (event) => {
+   let text = textBox.value;
+   event.preventDefault();
+   searchStudents(text, studentLI); 
+ 
+ });
+ 
+ /* submit listener */
+ textBox.addEventListener("keyup", () => {
+   let text = textBox.value;
+   searchStudents(text, studentLI); 
+ 
+ });
