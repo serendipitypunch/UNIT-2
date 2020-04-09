@@ -107,8 +107,9 @@ CALL appendPageLinks passing in studentLI
 appendPageLinks(studentLI);
 
 /*** 
-FUNCTION searchBar
+SEARCHBAR
 ***/
+
 let pageHeader = document.querySelector(".page-header");
 let form = document.createElement("form");
 form.style.float = "right";
@@ -120,34 +121,32 @@ textBox.className = "search-input";
 let submitButton = document.createElement("input");
 submitButton.type = "submit";
 
-
-
 form.appendChild(submitButton);
 form.insertBefore(textBox, submitButton);
 
 pageHeader.appendChild(form);
 
-const searchStudents = (searchInput, name) => {
+const searchStudents = (input, names) => {
    let newStudentsList;
-   for (let i = 0; i < name.length; i += 1) {
+   let text = input.value;
+   for (let i = 0; i < names.length; i += 1) {
       // names[i].className = "";
-      if (searchInput.value.length !== 0 && names[i].textContent.toLowerCase() === searchInput.value.toLowerCase()) {
+      if (text.length !== 0 && names[i].textContent.toLowerCase() === input.value.toLowerCase()) {
         newStudentsList.appendChild(names[i]);
       }
     }
-   appendPageLinks(newStudentList);
+   appendPageLinks(newStudentsList);
 };
 
 submitButton.addEventListener("click", (event) => {
-   let text = textBox.value;
    event.preventDefault();
-   searchStudents(text, studentLI); 
+   let text = textBox.value;
+   searchStudents(textBox.value, studentLI); 
  
  });
  
  /* submit listener */
  textBox.addEventListener("keyup", () => {
-   let text = textBox.value;
-   searchStudents(text, studentLI); 
- 
+   searchStudents(textBox.value, studentLI);
+
  });
