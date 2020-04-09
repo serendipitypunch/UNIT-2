@@ -111,19 +111,21 @@ SEARCHBAR
 ***/
 
 let pageHeader = document.querySelector(".page-header");
+
 let form = document.createElement("form");
 form.style.float = "right";
+
 let textBox = document.createElement("input");
 textBox.type = "text";
 textBox.placeholder = "Search!";
 textBox.autocomplete = "off";
 textBox.className = "search-input";
+
 let submitButton = document.createElement("input");
 submitButton.type = "submit";
 
 form.appendChild(submitButton);
 form.insertBefore(textBox, submitButton);
-
 pageHeader.appendChild(form);
 
 const searchStudents = (input, names) => {
@@ -138,6 +140,7 @@ const searchStudents = (input, names) => {
    appendPageLinks(newStudentsList);
 };
 
+ /* submitButton listener */
 submitButton.addEventListener("click", (event) => {
    event.preventDefault();
    let text = textBox.value;
@@ -145,7 +148,7 @@ submitButton.addEventListener("click", (event) => {
  
  });
  
- /* submit listener */
+ /* textBox listener */
  textBox.addEventListener("keyup", () => {
    searchStudents(textBox.value, studentLI);
 
