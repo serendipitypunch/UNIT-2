@@ -8,7 +8,6 @@ FSJS project 2 - List Filter and Pagination
 ***/
 const studentLI = document.querySelectorAll('.student-item');
 const perPage = 10;
-let pageDiv = document.querySelector(".page");
 
 
 /*** 
@@ -21,7 +20,6 @@ Create the "showPage" function with the arguments of "list" and "page"
          change studentLI display property to ""
          else: change studentLI display property to "none"
 ***/
-
 const showPage = (list, page) => {
    const startIndex = (page * perPage) - perPage;
    const endIndex = page * perPage;
@@ -67,6 +65,7 @@ Create the "appendPageLinks" function with the argument of "list"
       call showPage function -> passing StudentLI and the event target textContent value
 ***/
 const appendPageLinks = (list) => {
+   let pageDiv = document.querySelector(".page");
    const pageNum = list.length / perPage;
    let div = document.createElement("div");
    let ul = document.createElement("ul");
